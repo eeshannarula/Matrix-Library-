@@ -222,7 +222,26 @@ class Matrix
      }
      return result;
     }
-
+    static Copy(x)
+    {
+        var result=new Matrix(x.rows,x.cols)
+        return result
+    }
+    
+    static VectorToMatrix(x)
+    {
+        var result=new Matrix(x.length,1)
+        for(var i=0;i<result.rows;i++)
+        {
+            for(var j=0;j<result.cols;j++)
+            {
+                result.grid[i][j]=x[i]
+            }
+        }
+        
+        return result;
+    }
+    
     
 }
  
