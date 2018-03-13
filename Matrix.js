@@ -1,47 +1,32 @@
-
-/*
-hey ! i am trying to make an open source matrix library.you can contribute to this library.
-
-existing functions are 
-
-1.add,sub,div,and mult scaler number to matrix 
-2.add,dub,mult,div one matrix with other 
-3.dot produnct || matrix produnt
-4.transpose matrix(rows to cols , cols to rows) 
-
-*/
-
-
-
 class Matrix
 {
-    constructor(x,y)
+    constructor( rows, cols, initVal )
     {
-    this.rows=x;
-    this.cols=y;
-    this.grid=[];
+        this.rows = rows;
+        this.cols = cols;
+        this.grid=[];
+
+        // If an initial value is specified, fill the grid with it
+        if( ( initVal && !Number.isNaN(initVal) ) || initVal == 0 )
+            this.fill( initVal );
+        else
+            this.fill(0);
+    }
     
-    for(var i=0;i<this.rows;i++)
+    fill(val)
     {
-        this.grid[i]=[];
-        for(var j=0;j<this.cols;j++)
+        for(var r = 0; r < this.rows; r++)
         {
-            this.grid[i][j]=0
+            this.grid[r] = new Array();
+            for(var c = 0; c < this.cols; c++)
+            {
+                // If value is not given then set random values
+                if( ( val && !Number.isNaN(val) ) || val == 0 )
+                    this.grid[r].push( val );
+                else
+                    this.grid[r].push( Math.floor( Math.random() * 10 ) );
+            }
         }
-    }
-    
-    }
-    
-    
-    Randomize()
-    {
-        for(var i=0;i<this.rows;i++)
-    {
-        for(var j=0;j<this.cols;j++)
-        {
-    this.grid[i][j]=Math.floor(Math.random()*10);
-        }
-    }
     }
     
      Mult(x)
@@ -241,40 +226,5 @@ class Matrix
         
         return result;
     }
-    
-    
+       
 }
- 
-
-
-
-
-
-
-/*TESTING PERPOSIS ONLY  :-)
-
-var m1=new Matrix(3,2);
-var m2=new Matrix(3,2);
-m1.print();
-m1.Randomize();
-m2.Randomize();
-m1.Print("m1");
-m2.Print("m2");
-
-m2=Matrix.Transpose(m2);
-m2.Print("transposed m2");
-
-var m3=Matrix.Product(m1,m2);
-m2.Mult(m1)
-m2.Print("m2 multiplied")
-m3.Print("matrix product of m1 and m2--");
-
-
-//function doubleIt(x){return x*2};
-//m1.Map(doubleIt);
-//m1.print();
-//m1.Map(doubleIt,0,0);
-//m1.Print();
-
-
-*/
