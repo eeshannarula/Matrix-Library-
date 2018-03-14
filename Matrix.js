@@ -234,7 +234,7 @@ class Matrix
         if( this.grid[a] && this.grid[b] )
         {
            let tempRow = this.grid[a];
-            this.grid[a] = b;
+            this.grid[a] = this.grid[b];
             this.grid[b] = tempRow;
         }
         else
