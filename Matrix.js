@@ -10,17 +10,17 @@ class Matrix
         if( ( initVal && !Number.isNaN(initVal) ) || initVal == 0 )
             this.fill( initVal );
         else
-            this.fill(0);
+            this.fill( 0 );
     }
     
-    fill(val)
+    fill( val )
     {
-        for(let r = 0; r < this.rows; r++)
+        for( let r = 0; r < this.rows; r++ )
         {
             // Each row contains an array of cols items
             this.grid[r] = new Array( this.cols );
             // If a value val is given and it is a number, fill the matrix with it
-            if( ( val && !Number.isNaN(val) ) || val == 0 )
+            if( ( val && !Number.isNaN( val ) ) || val == 0 )
                 this.grid[r].fill( val );
             // Else, fill it with a repeating random number [0, 9]
             else
@@ -243,10 +243,11 @@ class Matrix
     
     multiplyRow(row, n)
     {
+        // If constant n is a number different of zero
         if( !Number.isNaN(n) && n != 0 )
         {
-            for( let k = 0; k < this.grid[row].length; k ++ )
-                this.grid[row][k] *= n;
+            for( let c = 0; c < this.grid[row].length; c++ )
+                this.grid[row][c] *= n;
         }
         else
             throw "Constant must be a number different of zero";
