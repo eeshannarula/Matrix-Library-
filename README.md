@@ -27,12 +27,12 @@ mtx.fill(-1);
 */
 ```
 
-_value_ is a finite number. 
+_value_ is a finite number to fill the matrix with.  
 If no value is given, the _fill()_ method will fill the matrix with a random number between 0 and 9.
 
-#### switchRows(rowA, rowB)
+#### switchRows(a, b)
 
-Switches two rows of the matrix.
+Switches the _Row<sub>a</sub>_ by _Row<sub>b</sub>_ and otherwise.
 ```
 /* Consider the following matrix mtx
 [ 9, 9, 9 ] 
@@ -50,12 +50,12 @@ mtx.switchRows(0, 1);
 */
 ```
 
-_rowA_ is the index of one row you want to switch. 
-_rowB_ is the index of second row you want to switch.
+_a_ is the index of one row you want to switch.  
+_b_ is the index of second row you want to switch.
 
-#### multiplyRow(row, n)
+#### multiplyRow(a, n)
 
-Multiplies the row index _row_ by a constant _n_.
+Multiplies each value of the  _Row<sub>a</sub>_ by a constant _n_.
 ```
 /* Consider the following matrix mtx
 [ 1, 1, 1 ] 
@@ -73,12 +73,12 @@ mtx.multiplyRow(1, 7);
 */
 ```
 
-_row_ is the index of one row to multiply. 
-_n_ is a number different of zero.
+_a_ is the index of the row to multiply.  
+_n_ is a number different of zero to multiply the row by.
 
 #### addRows(a, b)
 
-Sums the rows index _a_ and _b_.
+Sums the _Row<sub>a</sub>_ and _Row<sub>b</sub>_.
 ```
 /* Consider the following matrix mtx
 [ 2, 2, 2 ] 
@@ -96,6 +96,6 @@ mtx.addRows(0, 1);
 */
 ```
 
-_a_ is the index of the first row to sum. 
-_rowB_ is the index of the second row to add.
-> Note that the result of the sum always goes in place of the row index _b_.
+_a_ is the index of the first row to sum.  
+_b_ is the index of the second row to sum.
+> Note that the result of the sum always goes in place of _Row<sub>b</sub>_.
