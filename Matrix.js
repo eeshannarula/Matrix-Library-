@@ -1,47 +1,31 @@
-
-/*
-hey ! i am trying to make an open source matrix library.you can contribute to this library.
-
-existing functions are 
-
-1.add,sub,div,and mult scaler number to matrix 
-2.add,dub,mult,div one matrix with other 
-3.dot produnct || matrix produnt
-4.transpose matrix(rows to cols , cols to rows) 
-
-*/
-
-
-
 class Matrix
 {
-    constructor(x,y)
+    constructor( rows, cols, initVal )
     {
-    this.rows=x;
-    this.cols=y;
-    this.grid=[];
+        this.rows = rows;
+        this.cols = cols;
+        this.grid = new Array();
+
+        // If an initial value is specified, fill the grid with it
+        if( ( initVal && !Number.isNaN(initVal) ) || initVal == 0 )
+            this.fill( initVal );
+        else
+            this.fill( 0 );
+    }
     
-    for(var i=0;i<this.rows;i++)
+    fill( val )
     {
-        this.grid[i]=[];
-        for(var j=0;j<this.cols;j++)
+        for( let r = 0; r < this.rows; r++ )
         {
-            this.grid[i][j]=0
+            // Each row contains an array of cols items
+            this.grid[r] = new Array( this.cols );
+            // If a value val is given and it is a number, fill the matrix with it
+            if( ( val && !Number.isNaN( val ) ) || val == 0 )
+                this.grid[r].fill( val );
+            // Else, fill it with a repeating random number [0, 9]
+            else
+                this.grid[r].fill( Math.floor( Math.random() * 10 ) );
         }
-    }
-    
-    }
-    
-    
-    Randomize()
-    {
-        for(var i=0;i<this.rows;i++)
-    {
-        for(var j=0;j<this.cols;j++)
-        {
-    this.grid[i][j]=Math.floor(Math.random()*10);
-        }
-    }
     }
     
      Mult(x)
@@ -242,39 +226,43 @@ class Matrix
         return result;
     }
     
+    // Row operations methods
     
+    switchRows(a, b)
+    {
+        // If both rows exist
+        if( this.grid[a] && this.grid[b] )
+        {
+           let tempRow = this.grid[a];
+            this.grid[a] = this.grid[b];
+            this.grid[b] = tempRow;
+        }
+        else
+            throw "One or both of the rows don't exist";
+    }
+    
+    multiplyRow(row, n)
+    {
+        // If constant n is a number different of zero
+        if( !Number.isNaN(n) && n != 0 )
+        {
+            for( let c = 0; c < this.grid[row].length; c++ )
+                this.grid[row][c] *= n;
+        }
+        else
+            throw "Constant must be a number different of zero";
+    }
+    
+    addRows(a, b)
+    {
+        // If both rows exist
+        if( this.grid[a] && this.grid[b] )
+        {
+            for( let c = 0; c < this.grid[b].length; c++ )
+                this.grid[b][c] += this.grid[a][c];
+        }
+        else
+            throw "One or both of the rows don't exist";
+    }
+       
 }
- 
-
-
-
-
-
-
-/*TESTING PERPOSIS ONLY  :-)
-
-var m1=new Matrix(3,2);
-var m2=new Matrix(3,2);
-m1.print();
-m1.Randomize();
-m2.Randomize();
-m1.Print("m1");
-m2.Print("m2");
-
-m2=Matrix.Transpose(m2);
-m2.Print("transposed m2");
-
-var m3=Matrix.Product(m1,m2);
-m2.Mult(m1)
-m2.Print("m2 multiplied")
-m3.Print("matrix product of m1 and m2--");
-
-
-//function doubleIt(x){return x*2};
-//m1.Map(doubleIt);
-//m1.print();
-//m1.Map(doubleIt,0,0);
-//m1.Print();
-
-
-*/
